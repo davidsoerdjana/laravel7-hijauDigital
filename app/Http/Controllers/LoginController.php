@@ -26,9 +26,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function logout(Request $request)
     {
-        //
+        Auth::logout();
+        return redirect('/');
     }
 
     /**

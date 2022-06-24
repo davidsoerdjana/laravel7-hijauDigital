@@ -14,11 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('page/beranda');
+    return view('welcome');
 });
+
 
 Route::get('/login', function () {
     return view('user.login');
-});
+})->name('login');
 
 Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
+Route::get('/logout', 'LoginController@logout')->name('logout');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/beranda', function () {
+        return view('page/beranda');
+    });
+});
